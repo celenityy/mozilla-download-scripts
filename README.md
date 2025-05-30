@@ -8,9 +8,17 @@ This repo contains scripts for downloading and automatically updating Mozilla so
 - Checks for updates on **boot** and **hourly**, to ensure users are up to date as quick as possible.
 - Verifies the SHA-512 checksum of downloaded archives to preserve integrity - **Updates will fail if they don't match**.
 
+## Motivation
+
+- Distribution-packaged versions of Firefox typically receive delayed updates, which can leave users vulnerable to security issues.
+- Distributions also typically customize/make changes to Firefox and Thunderbird - sometimes at the direct cost of privacy and security. For instance, Fedora/Red Hat [allow **all** `https` websites to use SPNEGO/Negotiate Authentication](https://src.fedoraproject.org/rpms/firefox/blob/rawhide/f/firefox-redhat-default-prefs.js#_25), [disable DNS over HTTPS](https://src.fedoraproject.org/rpms/firefox/blob/rawhide/f/firefox-redhat-default-prefs.js#_28), [add a custom external/remote homepage](https://src.fedoraproject.org/rpms/firefox/blob/rawhide/f/firefox-redhat-default-prefs.js#_17), [enable GNOME integration](https://src.fedoraproject.org/rpms/firefox/blob/rawhide/f/firefox-redhat-default-prefs.js#_31), and [allow add-ons to be sideloaded/enabled without user consent](https://src.fedoraproject.org/rpms/firefox/blob/rawhide/f/firefox-enable-addons.patch) by default.
+- When using distribution-packaged versions of Firefox, you're not only trusting Mozilla - but you're also adding additional trust to the package maintainer(s), and by extension increasing your attack surface.
+- Firefox and Thunderbird's built-in updater [is currently broken](https://bugzilla.mozilla.org/show_bug.cgi?id=1940481) if the user doesn't have write access to the installation directory - which isn't really preferable from a security perspective.
+- At least for Fedora, the only packaged version of Thunderbird is ESR - so this allows users to use the **`release`** variant.
+
 ## Notes
 
-- **Firefox** users of **Debian-based** distributions should prefer to use [Mozilla's official `apt` repository](https://support.mozilla.org/kb/install-firefox-linux#w_install-firefox-deb-package-for-debian-based-distributions-recommended), instead of using these scripts.
+- **Firefox** users of **Debian-based** distributions should prefer to use [Mozilla's official `apt` repository](https://support.mozilla.org/kb/install-firefox-linux#w_install-firefox-deb-package-for-debian-based-distributions-recommended), instead of these scripts.
 - These scripts are designed for and tested on **Fedora**, but they should also work on other distributions - see below for more details on changes you might need to make.
 
 ## Preparation
