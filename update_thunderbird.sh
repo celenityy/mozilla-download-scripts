@@ -6,7 +6,7 @@ THUNDERBIRD_URL="https://download.mozilla.org/?product=thunderbird-latest-ssl&os
 BASE_URL="https://ftp.mozilla.org/pub/thunderbird/releases"
 CHECKSUMS_BASE_URL="https://productdelivery.mozilla-backup.org/pub/thunderbird/releases"
 CHECKSUMS_URL="SHA512SUMS"
-LATEST_VERSION=$(/usr/bin/curl -s "$THUNDERBIRD_URL" | /usr/bin/grep -oP 'https://download-installer\.cdn\.mozilla\.net/pub/thunderbird/releases/\K[0-9]+\.[0-9]+(\.[0-9]+)?')
+LATEST_VERSION=$(/usr/bin/curl --doh-cert-status --no-insecure --no-proxy-insecure --no-sessionid --no-ssl --no-ssl-allow-beast --no-ssl-auto-client-cert --no-ssl-no-revoke --no-ssl-revoke-best-effort --proto -all,https --proto-default https --proto-redir -all,https -s "$THUNDERBIRD_URL" | /usr/bin/grep -oP 'https://download-installer\.cdn\.mozilla\.net/pub/thunderbird/releases/\K[0-9]+\.[0-9]+(\.[0-9]+)?')
 
 # Check if the latest version is available
 if [ -f "$THUNDERBIRD_DIR/application.ini" ]; then
@@ -25,12 +25,12 @@ fi
 
 # Download the SHA512 checksums
 CHECKSUMS_FILE="$CHECKSUMS_BASE_URL/$LATEST_VERSION/$CHECKSUMS_URL"
-/usr/bin/curl -O "$CHECKSUMS_FILE"
+/usr/bin/curl --doh-cert-status --no-insecure --no-proxy-insecure --no-sessionid --no-ssl --no-ssl-allow-beast --no-ssl-auto-client-cert --no-ssl-no-revoke --no-ssl-revoke-best-effort --proto -all,https --proto-default https --proto-redir -all,https --tlsv1.3 --cert-status -O "$CHECKSUMS_FILE"
 
 # Download the latest Thunderbird release
 THUNDERBIRD_TAR="thunderbird-$LATEST_VERSION.tar.xz"
 THUNDERBIRD_DOWNLOAD_URL="$BASE_URL/$LATEST_VERSION/linux-x86_64/en-US/$THUNDERBIRD_TAR"
-/usr/bin/curl -O "$THUNDERBIRD_DOWNLOAD_URL"
+/usr/bin/curl --doh-cert-status --no-insecure --no-proxy-insecure --no-sessionid --no-ssl --no-ssl-allow-beast --no-ssl-auto-client-cert --no-ssl-no-revoke --no-ssl-revoke-best-effort --proto -all,https --proto-default https --proto-redir -all,https --tlsv1.3 -O "$THUNDERBIRD_DOWNLOAD_URL"
 
 # Verify the checksum for the specific file
 CHECKSUM=$(/usr/bin/grep "linux-x86_64/en-US/$THUNDERBIRD_TAR" "$CHECKSUMS_URL" | /usr/bin/awk '{print $1}')

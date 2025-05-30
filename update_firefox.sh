@@ -6,7 +6,7 @@ FIREFOX_URL="https://download.mozilla.org/?product=firefox-latest-ssl&os=linux64
 BASE_URL="https://ftp.mozilla.org/pub/firefox/releases"
 CHECKSUMS_BASE_URL="https://productdelivery.mozilla-backup.org/pub/firefox/releases"
 CHECKSUMS_URL="SHA512SUMS"
-LATEST_VERSION=$(/usr/bin/curl -s "$FIREFOX_URL" | /usr/bin/grep -oP 'https://download-installer\.cdn\.mozilla\.net/pub/firefox/releases/\K[0-9]+\.[0-9]+(\.[0-9]+)?')
+LATEST_VERSION=$(/usr/bin/curl --doh-cert-status --no-insecure --no-proxy-insecure --no-sessionid --no-ssl --no-ssl-allow-beast --no-ssl-auto-client-cert --no-ssl-no-revoke --no-ssl-revoke-best-effort --proto -all,https --proto-default https --proto-redir -all,https -s "$FIREFOX_URL" | /usr/bin/grep -oP 'https://download-installer\.cdn\.mozilla\.net/pub/firefox/releases/\K[0-9]+\.[0-9]+(\.[0-9]+)?')
 
 # Check if the latest version is available
 if [ -f "$FIREFOX_DIR/application.ini" ]; then
@@ -25,12 +25,12 @@ fi
 
 # Download the SHA512 checksums
 CHECKSUMS_FILE="$CHECKSUMS_BASE_URL/$LATEST_VERSION/$CHECKSUMS_URL"
-/usr/bin/curl -O "$CHECKSUMS_FILE"
+/usr/bin/curl --doh-cert-status --no-insecure --no-proxy-insecure --no-sessionid --no-ssl --no-ssl-allow-beast --no-ssl-auto-client-cert --no-ssl-no-revoke --no-ssl-revoke-best-effort --proto -all,https --proto-default https --proto-redir -all,https --tlsv1.3 --cert-status -O "$CHECKSUMS_FILE"
 
 # Download the latest Firefox release
 FIREFOX_TAR="firefox-$LATEST_VERSION.tar.xz"
 FIREFOX_DOWNLOAD_URL="$BASE_URL/$LATEST_VERSION/linux-x86_64/en-US/$FIREFOX_TAR"
-/usr/bin/curl -O "$FIREFOX_DOWNLOAD_URL"
+/usr/bin/curl --doh-cert-status --no-insecure --no-proxy-insecure --no-sessionid --no-ssl --no-ssl-allow-beast --no-ssl-auto-client-cert --no-ssl-no-revoke --no-ssl-revoke-best-effort --proto -all,https --proto-default https --proto-redir -all,https --tlsv1.3 -O "$FIREFOX_DOWNLOAD_URL"
 
 # Verify the checksum for the specific file
 CHECKSUM=$(/usr/bin/grep "linux-x86_64/en-US/$FIREFOX_TAR" "$CHECKSUMS_URL" | /usr/bin/awk '{print $1}')
