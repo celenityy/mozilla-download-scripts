@@ -1,12 +1,12 @@
 # Mozilla Download Scripts
 
-This repo contains scripts for downloading and automatically updating Mozilla software *(Currently includes **Firefox** and **Thunderbird**)* for GNU/Linux distributions.
+This repo contains bash scripts for downloading, installing, automatically updating, and uninstalling Mozilla software *(Currently includes **Firefox** and **Thunderbird**)* for GNU/Linux distributions.
 
 ## Features
 
 - Archives are downloaded directly from Mozilla, providing users with immediate updates *(No need to wait/rely on distro packagers)*, and the most authentic Firefox experience possible *(No distro tweaks/customizations)*.
 - Checks for updates on **boot** and **hourly**, to ensure users are up to date as quick as possible.
-- Verifies the SHA-512 checksum of downloaded archives to preserve integrity - **Updates will fail if they don't match**.
+- Verifies the SHA-512 checksum of downloaded archives to preserve integrity - **Installations will fail if they don't match**.
 
 ## Motivation
 
@@ -37,6 +37,32 @@ For security reasons, full paths are specified for executables, *(using variable
 So, for example, by default, we set the `AWK` variable to `/usr/bin/awk`. If I ran `which awk`, and my output was `/usr/local/bin/awk`, I would change the value of the `AWK` variable to `/usr/local/bin/awk` in my downloaded script(s).
 
 ## Set-up
+
+### Installation
+
+You'll first want to uninstall Firefox and/or Thunderbird from your package manager if already installed, and you'll want to install Firefox and/or Thunderbird from Mozilla. You can do this manually *(See [here](https://support.mozilla.org/kb/install-firefox-linux) for Firefox, and [here](https://support.mozilla.org/kb/installing-thunderbird-linux) for Thunderbird))*, or with the installation script:
+
+*(If you run `which sudo` and your output is different than `/usr/bin/sudo`, replace `/usr/bin/sudo` with your output/actual location. The same applies for `chmod`, `curl`, and any other commands below)*.
+
+**Firefox**:
+
+```sh
+/usr/bin/curl --cert-status --doh-cert-status --no-insecure --no-proxy-insecure --no-sessionid --no-ssl --no-ssl-allow-beast --no-ssl-auto-client-cert --no-ssl-no-revoke --no-ssl-revoke-best-effort --proto -all,https --proto-default https --proto-redir -all,https --show-error -O -sSL https://gitlab.com/celenityy/mozilla-download-scripts/-/raw/pages/install_firefox.sh
+/usr/bin/sudo /usr/bin/chmod -v 744 install_firefox.sh
+/usr/bin/sudo ./install_firefox.sh
+/usr/bin/rm -f install_firefox.sh
+```
+
+**Thunderbird**:
+
+```sh
+/usr/bin/curl --cert-status --doh-cert-status --no-insecure --no-proxy-insecure --no-sessionid --no-ssl --no-ssl-allow-beast --no-ssl-auto-client-cert --no-ssl-no-revoke --no-ssl-revoke-best-effort --proto -all,https --proto-default https --proto-redir -all,https --show-error -O -sSL https://gitlab.com/celenityy/mozilla-download-scripts/-/raw/pages/install_thunderbird.sh
+/usr/bin/sudo /usr/bin/chmod -v 744 install_thunderbird.sh
+/usr/bin/sudo ./install_thunderbird.sh
+/usr/bin/rm -f install_thunderbird.sh
+```
+
+You're now ready to set-up automatic updates:
 
 **1**. Download your script(s):
 
@@ -124,4 +150,28 @@ You can manually give it a test/run the script with the following command(s):
 
 ```sh
 /usr/bin/sudo /opt/celenity/Scripts/update_thunderbird.sh
+```
+
+## Uninstall
+
+You can uninstall Firefox and/or Thunderbird with the corresponding uninstall script(s):
+
+*(If you run `which sudo` and your output is different than `/usr/bin/sudo`, replace `/usr/bin/sudo` with your output/actual location. The same applies for `chmod`, `curl`, and any other commands below)*.
+
+**Firefox**:
+
+```sh
+/usr/bin/curl --cert-status --doh-cert-status --no-insecure --no-proxy-insecure --no-sessionid --no-ssl --no-ssl-allow-beast --no-ssl-auto-client-cert --no-ssl-no-revoke --no-ssl-revoke-best-effort --proto -all,https --proto-default https --proto-redir -all,https --show-error -O -sSL https://gitlab.com/celenityy/mozilla-download-scripts/-/raw/pages/uninstall_firefox.sh
+/usr/bin/sudo /usr/bin/chmod -v 744 uninstall_firefox.sh
+/usr/bin/sudo ./uninstall_firefox.sh
+/usr/bin/rm -f uninstall_firefox.sh
+```
+
+**Thunderbird**:
+
+```sh
+/usr/bin/curl --cert-status --doh-cert-status --no-insecure --no-proxy-insecure --no-sessionid --no-ssl --no-ssl-allow-beast --no-ssl-auto-client-cert --no-ssl-no-revoke --no-ssl-revoke-best-effort --proto -all,https --proto-default https --proto-redir -all,https --show-error -O -sSL https://gitlab.com/celenityy/mozilla-download-scripts/-/raw/pages/uninstall_thunderbird.sh
+/usr/bin/sudo /usr/bin/chmod -v 744 uninstall_thunderbird.sh
+/usr/bin/sudo ./uninstall_thunderbird.sh
+/usr/bin/rm -f uninstall_thunderbird.sh
 ```
