@@ -20,6 +20,7 @@ This repo contains bash scripts for downloading, installing, automatically updat
 
 - **Firefox** users of **Debian-based** distributions should prefer to use [Mozilla's official `apt` repository](https://support.mozilla.org/kb/install-firefox-linux#w_install-firefox-deb-package-for-debian-based-distributions-recommended), instead of these scripts.
 - These scripts are designed for and tested on **Fedora**, but they should also work on other distributions - see below for more details on changes you might need to make.
+- Only **glibc** builds are supported.
 
 ## Preparation
 
