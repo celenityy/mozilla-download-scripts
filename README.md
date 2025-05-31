@@ -27,24 +27,14 @@ This repo contains scripts for downloading and automatically updating Mozilla so
 
 After downloading your script(s) *(see below)*, you may need to make a few changes to adapt them for your environment.
 
-- It's assumed that Firefox is installed to `/opt/firefox`. You can change this if needed by editing the value of `FIREFOX_DIR`.
-- It's assumed that Thunderbird is installed to `/opt/thunderbird`. You can change this if needed by editing the value of `THUNDERBIRD_DIR`.
-- It's assumed that your preferred locale is `en-US`. You can change this if needed by replacing the value of `en_US` with your locale of choice.
+- It's assumed that Firefox is installed to `/opt/firefox`. You can change this if needed by editing the value of the `FIREFOX_DIR` variable.
+- It's assumed that Thunderbird is installed to `/opt/thunderbird`. You can change this if needed by editing the value of the `THUNDERBIRD_DIR` variable.
+- It's assumed that your preferred locale is `en-US`. You can change this if needed by editing the value of the `FIREFOX_LOCALE` and/or `THUNDERBIRD_LOCALE` variables.
+- It's assumed that you're using the `x86_64` architecture. If you're using a `32-bit` system, you should change the value of `FIREFOX_ARCHITECTURE`/`THUNDERBIRD_ARCHITECTURE` to `i686` **and** the value of `FIREFOX_URL_ARCHITECTURE`/`THUNDERBIRD_URL_ARCHITECTURE` to `linux`. **For Firefox**: If you're using `ARM64`, you should change the value of `FIREFOX_ARCHITECTURE` to `aarch64` **and** the value of `FIREFOX_URL_ARCHITECTURE` to `linux64-aarch64`.
 
-For security reasons, full paths are specified for executables. This is using their locations on **Fedora**, but depending on your distro, they may or may not be located in the same place - so if you're not using Fedora, you should confirm, and change the paths if necessary. An easy way to check is with the `which` command *(Ex: `which curl`)*. If the output of the `which` command for the corresponding tool doesn't match below, you'll need to modify the script and replace the location below with the location on your system:
+For security reasons, full paths are specified for executables, *(using variables that correspond to each executable)*. These locations should be the same across most distributions, but depending on your set-up, you might need to change them. An easy way to check where an executable is located is with the `which` command *(Ex: `which curl`)*. If the output of the `which` command for the corresponding tool doesn't match the value of the variable in your script(s) of choice *(ex. the `CURL` variable for `curl`)*, you'll need to edit the value of the variable corresponding to the executable that doesn't match.
 
-- It's assumed that `awk` is located at `/usr/bin/awk`.
-- It's assumed that `cp` is located at `/usr/bin/cp`.
-- It's assumed that `curl` is located at `/usr/bin/curl`.
-- It's assumed that `cut` is located at `/usr/bin/cut`.
-- It's assumed that `echo` is located at `/usr/bin/echo`.
-- It's assumed that `grep` is located at `/usr/bin/grep`.
-- It's assumed that `head` is located at `/usr/bin/head`.
-- It's assumed that `rm` is located at `/usr/bin/rm`.
-- It's assumed that `sha512sum` is located at `/usr/local/sbin/sha512sum`.
-- It's assumed that `tar` is located at `/usr/bin/tar`.
-
-So, for example, if I ran `which awk` and my output was `/usr/local/bin/awk`, I would replace instances of `/usr/bin/awk` with `/usr/local/bin/awk` in my downloaded script(s).
+So, for example, by default, we set the `AWK` variable to `/usr/bin/awk`. If I ran `which awk`, and my output was `/usr/local/bin/awk`, I would change the value of the `AWK` variable to `/usr/local/bin/awk` in my downloaded script(s).
 
 ## Set-up
 
