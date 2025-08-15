@@ -43,6 +43,8 @@ So, for example, by default, we set the `AWK` variable to `/usr/bin/awk`. If I r
 
 You'll first want to uninstall Firefox and/or Thunderbird from your package manager if already installed, and you'll want to install Firefox and/or Thunderbird from Mozilla. You can do this manually *(See [here](https://support.mozilla.org/kb/install-firefox-linux) for Firefox, and [here](https://support.mozilla.org/kb/installing-thunderbird-linux) for Thunderbird))*, or with the installation script:
 
+#### sudo
+
 *(If you run `which sudo` and your output is different than `/usr/bin/sudo`, replace `/usr/bin/sudo` with your output/actual location. The same applies for `chmod`, `curl`, and any other commands below)*.
 
 **Firefox**:
@@ -63,7 +65,7 @@ You'll first want to uninstall Firefox and/or Thunderbird from your package mana
 /usr/bin/rm -f install_thunderbird.sh
 ```
 
-#### secureblue
+#### run0 (ex. secureblue)
 
 **Firefox**:
 
@@ -103,6 +105,8 @@ You're now ready to set-up automatic updates:
 
 **3**. Ensure the script(s) have proper permissions:
 
+#### sudo
+
 *(If you run `which sudo` and your output is different than `/usr/bin/sudo`, replace `/usr/bin/sudo` with your output/actual location. The same applies for `chmod` and any other commands below)*.
 
 **Firefox**:
@@ -117,7 +121,7 @@ You're now ready to set-up automatic updates:
 /usr/bin/sudo /usr/bin/chmod -v 744 update_thunderbird.sh
 ```
 
-#### secureblue
+#### run0 (ex. secureblue)
 
 ```sh
 /usr/bin/run0 /usr/bin/chmod -v 744 update_firefox.sh
@@ -130,6 +134,8 @@ You're now ready to set-up automatic updates:
 ```
 
 **4**. Copy the script(s) to your preferred location(s). I personally use `/opt/celenity/Scripts/`:
+
+#### sudo
 
 **Firefox**:
 
@@ -145,7 +151,7 @@ You're now ready to set-up automatic updates:
 /usr/bin/sudo /usr/bin/cp update_thunderbird.sh /opt/celenity/Scripts/update_thunderbird.sh
 ```
 
-#### secureblue
+#### run0 (ex. secureblue)
 
 **Firefox**:
 
@@ -165,11 +171,13 @@ You're now ready to set-up automatic updates:
 
 *(You can replace the value of `EDITOR` below with whatever you prefer, this is using `nano`, installed at `/usr/bin/nano`)*.
 
+#### sudo
+
 ```sh
 /usr/bin/sudo EDITOR=/usr/bin/nano /usr/bin/crontab -e
 ```
 
-#### secureblue
+#### run0 (ex. secureblue)
 
 ```sh
 /usr/bin/run0 EDITOR=/usr/bin/nano /usr/bin/crontab -e
@@ -195,6 +203,8 @@ Save, and enjoy. :)
 
 You can manually give it a test/run the script with the following command(s):
 
+#### sudo
+
 **Firefox**:
 
 ```sh
@@ -207,7 +217,7 @@ You can manually give it a test/run the script with the following command(s):
 /usr/bin/sudo /opt/celenity/Scripts/update_thunderbird.sh
 ```
 
-#### secureblue
+#### run0 (ex. secureblue)
 
 **Firefox**:
 
@@ -224,6 +234,8 @@ You can manually give it a test/run the script with the following command(s):
 ## Uninstall
 
 You can uninstall Firefox and/or Thunderbird with the corresponding uninstall script(s):
+
+#### sudo
 
 *(If you run `which sudo` and your output is different than `/usr/bin/sudo`, replace `/usr/bin/sudo` with your output/actual location. The same applies for `chmod`, `curl`, and any other commands below)*.
 
@@ -245,7 +257,7 @@ You can uninstall Firefox and/or Thunderbird with the corresponding uninstall sc
 /usr/bin/rm -f uninstall_thunderbird.sh
 ```
 
-#### secureblue
+#### run0 (ex. secureblue)
 
 **Firefox**:
 
