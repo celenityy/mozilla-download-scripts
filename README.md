@@ -123,6 +123,8 @@ You're now ready to set-up automatic updates:
 
 #### run0 (ex. secureblue)
 
+**Firefox**:
+
 ```sh
 /usr/bin/run0 /usr/bin/chmod -v 744 update_firefox.sh
 ```
