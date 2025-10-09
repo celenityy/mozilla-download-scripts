@@ -42,7 +42,7 @@ fi
 
 # Download the SHA512 checksums
 CHECKSUMS_FILE="$CHECKSUMS_BASE_URL/$LATEST_VERSION/$CHECKSUMS_URL"
-"$CURL" --doh-cert-status --no-insecure --no-proxy-insecure --no-sessionid --no-ssl --no-ssl-allow-beast --no-ssl-auto-client-cert --no-ssl-no-revoke --no-ssl-revoke-best-effort --proto -all,https --proto-default https --proto-redir -all,https --tlsv1.3 --cert-status -O "$CHECKSUMS_FILE"
+"$CURL" --doh-cert-status --no-insecure --no-proxy-insecure --no-sessionid --no-ssl --no-ssl-allow-beast --no-ssl-auto-client-cert --no-ssl-no-revoke --no-ssl-revoke-best-effort --proto -all,https --proto-default https --proto-redir -all,https --tlsv1.3 -O "$CHECKSUMS_FILE"
 
 # Download the latest Thunderbird release
 THUNDERBIRD_TAR="thunderbird-$LATEST_VERSION.tar.xz"
