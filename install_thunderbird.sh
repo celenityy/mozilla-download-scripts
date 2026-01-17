@@ -4,6 +4,7 @@
 # We're specifying the full paths here for security reasons - you'll need to edit these if you have them installed to a different directory
 # (an easy way to find where you have them installed is via the `which` command - ex. `which awk`)
 AWK='/usr/bin/awk'
+CHMOD='/usr/bin/chmod'
 CP='/usr/bin/cp'
 CURL='/usr/bin/curl'
 CUT='/usr/bin/cut'
@@ -72,6 +73,7 @@ fi
 "${TAR}" -xf "${THUNDERBIRD_TAR}"
 "${ROOT}" "${MKDIR}" -vp "${THUNDERBIRD_DIR}"
 "${ROOT}" "${CP}" -v -R thunderbird/* "${THUNDERBIRD_DIR}/"
+"${ROOT}" "${CHMOD}" -v 755 "${THUNDERBIRD_DIR}"
 "${RM}" -rf thunderbird "${THUNDERBIRD_TAR}" "${CHECKSUMS_URL}"
 
 # Create a symlink
@@ -88,6 +90,10 @@ fi
 "${CURL}" ${CURL_FLAGS} --tlsv1.3 --cert-status -O "https://raw.githubusercontent.com/mozilla/sumo-kb/main/installing-thunderbird-linux/thunderbird.desktop"
 if ! [ -d "${HOME}/.local/share/applications" ]; then
     mkdir -vp "${HOME}/.local/share/applications"
+fi
+
+if [[ -f "${HOME}/.local/share/applications/thunderbird.desktop" ]]; then
+    rm -f "${HOME}/.local/share/applications/thunderbird.desktop"
 fi
 "${CP}" -v thunderbird.desktop "${HOME}/.local/share/applications/"
 "${RM}" -f thunderbird.desktop

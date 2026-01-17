@@ -4,6 +4,7 @@
 # We're specifying the full paths here for security reasons - you'll need to edit these if you have them installed to a different directory
 # (an easy way to find where you have them installed is via the `which` command - ex. `which awk`)
 AWK='/usr/bin/awk'
+CHMOD='/usr/bin/chmod'
 CP='/usr/bin/cp'
 CURL='/usr/bin/curl'
 CUT='/usr/bin/cut'
@@ -72,6 +73,7 @@ fi
 "${TAR}" -xf "${FIREFOX_TAR}"
 "${ROOT}" "${MKDIR}" -vp "${FIREFOX_DIR}"
 "${ROOT}" "${CP}" -v -R firefox/* "${FIREFOX_DIR}/"
+"${ROOT}" "${CHMOD}" -v 755 "${FIREFOX_DIR}"
 "${RM}" -rf firefox "${FIREFOX_TAR}" "${CHECKSUMS_URL}"
 
 # Create a symlink
@@ -88,6 +90,10 @@ fi
 "${CURL}" ${CURL_FLAGS} --tlsv1.3 --cert-status -O "https://raw.githubusercontent.com/mozilla/sumo-kb/main/install-firefox-linux/firefox.desktop"
 if ! [ -d "${HOME}/.local/share/applications" ]; then
     mkdir -vp "${HOME}/.local/share/applications"
+fi
+
+if [[ -f "${HOME}/.local/share/applications/firefox.desktop" ]]; then
+    rm -f "${HOME}/.local/share/applications/firefox.desktop"
 fi
 "${CP}" -v firefox.desktop "${HOME}/.local/share/applications/"
 "${RM}" -f firefox.desktop

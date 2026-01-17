@@ -143,6 +143,7 @@ You're now ready to set-up automatic updates:
 
 ```sh
 /usr/bin/sudo /usr/bin/mkdir -vp /opt/celenity/Scripts
+/usr/bin/sudo /usr/bin/chmod -v 755 /opt/celenity/Scripts
 /usr/bin/sudo /usr/bin/cp update_firefox.sh /opt/celenity/Scripts/update_firefox.sh
 ```
 
@@ -150,6 +151,7 @@ You're now ready to set-up automatic updates:
 
 ```sh
 /usr/bin/sudo /usr/bin/mkdir -vp /opt/celenity/Scripts
+/usr/bin/sudo /usr/bin/chmod -v 755 /opt/celenity/Scripts
 /usr/bin/sudo /usr/bin/cp update_thunderbird.sh /opt/celenity/Scripts/update_thunderbird.sh
 ```
 
@@ -159,6 +161,7 @@ You're now ready to set-up automatic updates:
 
 ```sh
 /usr/bin/run0 /usr/bin/mkdir -vp /opt/celenity/Scripts
+/usr/bin/run0 /usr/bin/chmod -v 755 /opt/celenity/Scripts
 /usr/bin/run0 /usr/bin/cp update_firefox.sh /opt/celenity/Scripts/update_firefox.sh
 ```
 
@@ -166,6 +169,7 @@ You're now ready to set-up automatic updates:
 
 ```sh
 /usr/bin/run0 /usr/bin/mkdir -vp /opt/celenity/Scripts
+/usr/bin/run0 /usr/bin/chmod -v 755 /opt/celenity/Scripts
 /usr/bin/run0 /usr/bin/cp update_thunderbird.sh /opt/celenity/Scripts/update_thunderbird.sh
 ```
 
