@@ -186,7 +186,8 @@ You're now ready to set-up automatic updates:
 #### run0 (ex. secureblue)
 
 ```sh
-/usr/bin/run0 EDITOR=/usr/bin/nano /usr/bin/crontab -e
+/usr/bin/run0
+EDITOR=/usr/bin/nano /usr/bin/crontab -e
 ```
 
 with the following:
@@ -214,13 +215,13 @@ You can manually give it a test/run the script with the following command(s):
 **Firefox**:
 
 ```sh
-/usr/bin/sudo /opt/celenity/scripts/update_firefox.sh
+/usr/bin/sudo bash -x /opt/celenity/scripts/update_firefox.sh
 ```
 
 **Thunderbird**:
 
 ```sh
-/usr/bin/sudo /opt/celenity/scripts/update_thunderbird.sh
+/usr/bin/sudo bash -x /opt/celenity/scripts/update_thunderbird.sh
 ```
 
 #### run0 (ex. secureblue)
@@ -228,13 +229,13 @@ You can manually give it a test/run the script with the following command(s):
 **Firefox**:
 
 ```sh
-/usr/bin/run0 /opt/celenity/scripts/update_firefox.sh
+/usr/bin/run0 bash -x /opt/celenity/scripts/update_firefox.sh
 ```
 
 **Thunderbird**:
 
 ```sh
-/usr/bin/run0 /opt/celenity/scripts/update_thunderbird.sh
+/usr/bin/run0 bash -x /opt/celenity/scripts/update_thunderbird.sh
 ```
 
 ## Uninstall
