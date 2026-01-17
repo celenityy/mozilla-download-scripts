@@ -13,8 +13,19 @@ HEAD='/usr/bin/head'
 LN='/usr/bin/ln'
 MKDIR='/usr/bin/mkdir'
 RM='/usr/bin/rm'
+RUN0='/usr/bin/run0'
 SHA512SUM='/usr/bin/sha512sum'
+SUDO='/usr/bin/sudo'
 TAR='/usr/bin/tar'
+
+if [[ -f "${RUN0}" ]]; then
+    ROOT="${RUN0}"
+elif [[ -f "${SUDO}" ]]; then
+    ROOT="${SUDO}"
+else
+    "${ECHO}" 'Sorry, only run0 and sudo are supported at this time.'
+    exit 1
+fi
 
 # Set default curl flags
 CURL_FLAGS='--doh-cert-status --no-insecure --no-proxy-insecure --no-sessionid --no-ssl --no-ssl-allow-beast --no-ssl-auto-client-cert --no-ssl-no-revoke --no-ssl-revoke-best-effort --proto -all,https --proto-default https --proto-redir -all,https --show-error'
@@ -59,13 +70,17 @@ fi
 
 # Extract and install Thunderbird
 "${TAR}" -xf "${THUNDERBIRD_TAR}"
-"${MKDIR}" -vp "${THUNDERBIRD_DIR}"
-"${CP}" -v -R thunderbird/* "${THUNDERBIRD_DIR}/"
+"${ROOT}" "${MKDIR}" -vp "${THUNDERBIRD_DIR}"
+"${ROOT}" "${CP}" -v -R thunderbird/* "${THUNDERBIRD_DIR}/"
 "${RM}" -rf thunderbird "${THUNDERBIRD_TAR}" "${CHECKSUMS_URL}"
 
 # Create a symlink
 if ! [ -d "${HOME}/.local/bin" ]; then
     mkdir -vp "${HOME}/.local/bin"
+fi
+
+if [[ -f "${HOME}/.local/bin/thunderbird" ]]; then
+    rm -f "${HOME}/.local/bin/thunderbird"
 fi
 "${LN}" -s "${THUNDERBIRD_DIR}/thunderbird" "${HOME}/.local/bin/thunderbird"
 

@@ -6,6 +6,17 @@
 ECHO='/usr/bin/echo'
 READ='/usr/bin/read'
 RM='/usr/bin/rm'
+RUN0='/usr/bin/run0'
+SUDO='/usr/bin/sudo'
+
+if [[ -f "${RUN0}" ]]; then
+    ROOT="${RUN0}"
+elif [[ -f "${SUDO}" ]]; then
+    ROOT="${SUDO}"
+else
+    "${ECHO}" 'Sorry, only run0 and sudo are supported at this time.'
+    exit 1
+fi
 
 # Set variables
 THUNDERBIRD_DIR='/opt/thunderbird'
@@ -21,7 +32,7 @@ fi
 "${ECHO}" "Uninstalling Thunderbird..."
 
 # Uninstall Thunderbird
-"${RM}" -rf "${THUNDERBIRD_DIR}"
+"${ROOT}" "${RM}" -rf "${THUNDERBIRD_DIR}"
 
 # Remove symlink
 if [ -f "${THUNDERBIRD_SYMLINK}" ]; then
