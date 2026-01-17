@@ -18,6 +18,7 @@ RUN0='/usr/bin/run0'
 SHA512SUM='/usr/bin/sha512sum'
 SUDO='/usr/bin/sudo'
 TAR='/usr/bin/tar'
+UPDATE_DESKTOP_DB='/usr/bin/update-desktop-database'
 
 if [[ -f "${RUN0}" ]]; then
     ROOT="${RUN0}"
@@ -96,6 +97,7 @@ if [[ -f "${HOME}/.local/share/applications/firefox.desktop" ]]; then
     rm -f "${HOME}/.local/share/applications/firefox.desktop"
 fi
 "${CP}" -v firefox.desktop "${HOME}/.local/share/applications/"
+"${UPDATE_DESKTOP_DB}" "${HOME}/.local/share/applications/"
 "${RM}" -f firefox.desktop
 
 "${ECHO}" "Firefox ${LATEST_VERSION} has been installed."

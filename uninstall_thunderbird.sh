@@ -8,6 +8,7 @@ READ='/usr/bin/read'
 RM='/usr/bin/rm'
 RUN0='/usr/bin/run0'
 SUDO='/usr/bin/sudo'
+UPDATE_DESKTOP_DB='/usr/bin/update-desktop-database'
 
 if [[ -f "${RUN0}" ]]; then
     ROOT="${RUN0}"
@@ -42,6 +43,7 @@ fi
 # Remove desktop file
 if [ -f "${THUNDERBIRD_DESKTOP}" ]; then
     "${RM}" -f "${THUNDERBIRD_DESKTOP}"
+	"${UPDATE_DESKTOP_DB}" "${HOME}/.local/share/applications/"
 fi
 
 "${ECHO}" -e "Would you also like to remove your profiles/data (${HOME}/.thunderbird)?";
