@@ -15,7 +15,7 @@ SHA512SUM='/usr/bin/sha512sum'
 TAR='/usr/bin/tar'
 
 # Set default curl flags
-CURL_FLAGS='--doh-cert-status --no-insecure --no-proxy-insecure --no-sessionid --no-ssl --no-ssl-allow-beast --no-ssl-auto-client-cert --no-ssl-no-revoke --no-ssl-revoke-best-effort --proto -all,https --proto-default https --proto-redir -all,https'
+CURL_FLAGS='--doh-cert-status --no-insecure --no-proxy-insecure --no-sessionid --no-ssl --no-ssl-allow-beast --no-ssl-auto-client-cert --no-ssl-no-revoke --no-ssl-revoke-best-effort --proto -all,https --proto-default https --proto-redir -all,https --show-error'
 
 # Set variables
 FIREFOX_ARCHITECTURE='x86_64'
